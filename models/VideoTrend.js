@@ -18,6 +18,9 @@ const videoTrendSchema = new Schema({
     'music': {
         type: String
     },
+    'music_genre': {
+        type: String
+    },
     'video_style': {
         type: String
     },
@@ -30,7 +33,6 @@ const videoTrendSchema = new Schema({
     'video_length': {
         type: Number
     },
-
 });
 
 const VideoTrend = model('VideoTrend', videoTrendSchema);
