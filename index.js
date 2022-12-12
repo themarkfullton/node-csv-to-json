@@ -1,6 +1,8 @@
 import * as d3 from 'd3';
 import * as fs from 'fs';
 import { renameKey}  from './utils/index.js';
+import { conn } from './config/connection.js';
+import { VideoTrend } from './models/VideoTrend.js';
 // IF YOU HAVE SEVERAL FILES, YOU CAN PULL THEIR NAMES IN USING THIS
 // const filesToRead = fs.readdirSync('data');
 // console.log(filesToRead);
@@ -16,8 +18,6 @@ let rawData = d3.csvParse(csvFile);
 // d3.timeParse allows us to take a string and turn it into a datetime
 // This here says to expect the string to be in YYYYmm format
 let parse = d3.timeParse("%Y%m");
-
-console.log(rawData.columns);
 
 // When we pull in the CSV, typically all data types are all String
 //   but our model has more than just string data types
@@ -41,5 +41,11 @@ let cleanedData = rawData.map(d => {
     return d;
 });
 
-console.log(cleanedData);
+VideoTrend.insertMany(cleanedData)
+    .then((resp) => {
+        console.log(resp);
+    })
+    .catch((err) => {
+        console.log(err);
+    })
 // }) <- Comes from the commented map statement

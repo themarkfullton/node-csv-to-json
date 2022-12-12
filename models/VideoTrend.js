@@ -35,6 +35,4 @@ const videoTrendSchema = new Schema({
     },
 });
 
-const VideoTrend = model('VideoTrend', videoTrendSchema);
-
-export default VideoTrend;
+export const VideoTrend = model('VideoTrend', videoTrendSchema);
