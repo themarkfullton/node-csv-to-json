@@ -43,9 +43,11 @@ let cleanedData = rawData.map(d => {
 
 VideoTrend.insertMany(cleanedData)
     .then((resp) => {
-        console.log(resp);
+        console.log("Added to database:")
+        process.exit();
     })
     .catch((err) => {
         console.log(err);
+        process.exit(1);
     })
 // }) <- Comes from the commented map statement
